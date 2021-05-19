@@ -7,7 +7,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
     cors: { origin: "*", methods: ["GET", "POST"] },
 });
-const PORT: number = 4000;
+const PORT: number = 8080;
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -35,6 +35,6 @@ io.on("connection", (socket) => {
     });
 });
 
-server.listen(PORT, () => {
+server.listen(process.env.PORT || PORT, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
