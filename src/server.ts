@@ -7,7 +7,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
     cors: { origin: "*", methods: ["GET", "POST"] },
 });
-const PORT: number = 3000;
+const PORT: number = 4000;
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -26,6 +26,13 @@ app.get("/", (req, res) => res.send("Express + Typescript!!!"));
 
 io.on("connection", (socket) => {
     console.log("a user connected");
+    socket.emit("connected", true);
+    socket.on("disconnect", () => {
+        console.log("a user disconnected");
+    });
+    socket.on("update-pano-view", (panoView) => {
+        socket.volatile.broadcast.emit("pano-view-update", panoView);
+    });
 });
 
 server.listen(PORT, () => {
