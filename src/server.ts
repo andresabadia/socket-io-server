@@ -33,6 +33,9 @@ io.on("connection", (socket) => {
     socket.on("update-pano-view", (panoView) => {
         socket.volatile.broadcast.emit("pano-view-update", panoView);
     });
+    socket.on("key-clicked", (key) => {
+        socket.broadcast.emit("key-clicked", key);
+    });
 });
 
 server.listen(process.env.PORT || PORT, () => {
