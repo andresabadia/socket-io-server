@@ -36,6 +36,9 @@ io.on("connection", (socket) => {
     socket.on("key-clicked", (key) => {
         socket.broadcast.emit("key-clicked", key);
     });
+    socket.on("el-clicked", (el) => {
+        socket.broadcast.emit("el-clicked", el);
+    });
 });
 
 server.listen(process.env.PORT || PORT, () => {
