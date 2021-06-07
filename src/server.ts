@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", (req, res) => res.send("Express + Typescript!!!"));
+app.get("/", (req, res) => res.send("0.2"));
 
 io.on("connection", (socket) => {
     console.log("a user connected");
